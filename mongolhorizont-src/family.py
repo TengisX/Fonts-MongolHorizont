@@ -1,7 +1,7 @@
 """Turn horiz.py output into a member of the MongolHorizont family:
 set family/style names, style flags and Han-compatible vertical metrics.
 
-Usage: python3 family.py SRC.ttf DST.ttf Regular|Italic
+Usage: python3 family.py SRC.ttf DST.ttf Regular|Italic [FAMILY]
 """
 import sys
 from fontTools.ttLib import TTFont
@@ -10,16 +10,16 @@ FAMILY = 'MongolHorizont'
 # Vertical metrics copied from Noto Sans CJK so mixed lines keep the Han line height
 ASC, DSC = 1160, -288
 
-def set_style(src, dst, style):
+def set_style(src, dst, style, family=FAMILY):
     f = TTFont(src)
     italic = style == 'Italic'
-    ps = f'{FAMILY}-{style}'
+    ps = f"{family.replace(' ', '')}-{style}"
     nt = f['name']
     for pid, eid, lid in [(3, 1, 0x409), (1, 0, 0)]:
-        nt.setName(FAMILY, 1, pid, eid, lid)
+        nt.setName(family, 1, pid, eid, lid)
         nt.setName(style, 2, pid, eid, lid)
         nt.setName(f'1.000;{ps}', 3, pid, eid, lid)
-        nt.setName(f'{FAMILY} {style}', 4, pid, eid, lid)
+        nt.setName(f'{family} {style}', 4, pid, eid, lid)
         nt.setName(ps, 6, pid, eid, lid)
     for i in (16, 17, 21, 22):
         nt.removeNames(nameID=i)
@@ -36,6 +36,6 @@ def set_style(src, dst, style):
     print(dst, 'italicAngle', f['post'].italicAngle)
 
 if __name__ == '__main__':
-    if len(sys.argv) != 4 or sys.argv[3] not in ('Regular', 'Italic'):
+    if len(sys.argv) not in (4, 5) or sys.argv[3] not in ('Regular', 'Italic'):
         sys.exit(__doc__)
-    set_style(*sys.argv[1:4])
+    set_style(*sys.argv[1:])
