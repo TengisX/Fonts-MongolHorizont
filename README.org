@@ -18,7 +18,7 @@ The family has two styles:
 
 #+caption: MongolHorizont Regular and Italic (traditional Mongolian above, Todo below)
 #+attr_org: :width 700
-[[file:images/preview.png]]
+[[./preview.png]]
 
 Coverage is that of Noto Sans Mongolian: traditional Mongolian, Todo, Sibe,
 Manchu and Ali Gali (U+1800–U+18AF), plus the Latin glyphs of the source font.
