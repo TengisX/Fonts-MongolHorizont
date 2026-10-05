@@ -16,6 +16,10 @@ The family has two styles:
 | Regular | 1/3.5 of the glyph height  | 10° to right  | −10           |
 | Italic  | 1/3.5 of the glyph height  | 30° to right  | −30           |
 
+#+caption: MongolHorizont Regular and Italic (traditional Mongolian above, Todo below)
+#+attr_org: :width 700
+[[file:images/preview.png]]
+
 Coverage is that of Noto Sans Mongolian: traditional Mongolian, Todo, Sibe,
 Manchu and Ali Gali (U+1800–U+18AF), plus the Latin glyphs of the source font.
 
@@ -46,6 +50,7 @@ Manchu and Ali Gali (U+1800–U+18AF), plus the Latin glyphs of the source font.
 | =family.py=                   | Family and style names, style flags, vertical metrics         |
 | =install-mongolhorizont.sh=   | User installation and fontconfig defaults                     |
 | =render.py=                   | Text preview as PNG                                           |
+| =images/preview.png=          | Sample of the final Regular and Italic                        |
 | =mono.py= and helpers         | Experimental monospaced variant (see [[*Monospaced variant]])  |
 
 * Building
