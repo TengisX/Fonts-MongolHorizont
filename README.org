@@ -1,6 +1,9 @@
 #+title: MongolHorizont
 #+subtitle: A horizontal (left-to-right) traditional Mongolian font derived from Noto Sans Mongolian
 
+* Main repository: https://codeberg.org/Tengis/Fonts-MongolHorizont
+
+
 * Overview
 
 MongolHorizont reshapes the glyphs of Noto Sans Mongolian for horizontal,
