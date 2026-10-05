@@ -58,7 +58,7 @@ Manchu and Ali Gali (U+1800–U+18AF), plus the Latin glyphs of the source font.
 Requirements: Python 3, =fonttools=, =curl=.
 
 #+begin_src sh
-./build.sh
+./mongolhorizont-src/build.sh
 #+end_src
 
 The fonts are written to =build/=. The parameters are set at the top of
@@ -75,13 +75,13 @@ The fonts are written to =build/=. The parameters are set at the top of
 =horiz.py= can also be run on its own:
 
 #+begin_src sh
-python3 horiz.py SRC.ttf DST.ttf SLANT FAMILY RATIO MODE
+./mongolhorizont-src/horiz.py SRC.ttf DST.ttf SLANT FAMILY RATIO MODE
 #+end_src
 
 * Installation
 
 #+begin_src sh
-./install-mongolhorizont.sh [FONT_DIR]
+./mongolhorizont-src/install-mongolhorizont.sh [FONT_DIR]
 #+end_src
 
 The script
@@ -122,27 +122,6 @@ LibreOffice classifies Mongolian as Asian text. Enable Asian language support
 the /Asian text font/, preferably in the paragraph style. The toolbar font box
 sets only one font slot, usually the Western one.
 
-* Editing glyphs
-
-FontForge (=apt install fontforge=) for editing, HarfBuzz for previewing,
-since FontForge's metrics window does not perform Mongolian joining.
-
-#+begin_src sh
-apt install fontforge libharfbuzz-bin entr feh
-# after each File → Generate Fonts to test.ttf:
-echo test.ttf | entr hb-view --font-size=100 --margin=40 test.ttf "ᠮᠣᠩᠭᠣᠯ ᠥᠪᠥᠷ" -o preview.png &
-feh --reload 1 preview.png
-#+end_src
-
-- Positional forms and ligatures have no code points; find them by glyph name
-  (View → Goto), e.g. =uni1823.O.medi=, =uni1825.AOI.init=, =BAa.fina=.
-  =hb-shape FONT "word"= lists the glyphs a word uses.
-- Keep stem ends between y = 364 and 444, starting at x = 0 and overlapping
-  the advance by about 30 units.
-- Some glyphs are references to others (e.g. medial ᠤ references medial ᠣ);
-  editing the base glyph changes all of them.
-- If FontForge damages the layout tables, copy =GSUB=, =GPOS= and =GDEF= back
-  from the original file with fontTools; glyph names must be unchanged.
 
 * Monospaced variant (experimental)
 
@@ -158,14 +137,6 @@ The automatic approach works for most glyphs, but intrinsically wide letters
 — such as the initial forms of ö/ü — end up heavily compressed. A usable
 monospaced Mongolian needs a modular redesign of these letters rather than
 geometric adjustment.
-
-* Known limitations
-
-- The Todo long vowel sign ᡃ after a consonant (not valid orthography)
-  renders as a zero-width mark.
-- Hinting is absent.
-- MVS (U+180E) and FVS behave as in Noto Sans Mongolian; in the monospaced
-  variant MVS occupies one empty column, FVS none.
 
 * Licence
 
