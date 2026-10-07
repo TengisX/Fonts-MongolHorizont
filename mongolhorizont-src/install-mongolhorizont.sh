@@ -5,6 +5,7 @@
 #
 # Usage: ./install-mongolhorizont.sh [FONT_DIR]
 #   FONT_DIR defaults to the directory containing this script.
+cd ./build/
 set -euo pipefail
 
 SRC_DIR="$(realpath "${1:-$(dirname "$0")}")"
